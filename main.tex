@@ -1,0 +1,161 @@
+\documentclass{article}[10pt]
+
+\usepackage[a4paper]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{mathtools}
+\usepackage{amsthm,amsfonts,amssymb}
+\usepackage{tikz}
+\usepackage{graphicx}
+
+\newtheorem{defn}{Definition}[subsection]
+\newtheorem{theorem}{Theorem}[subsection]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}{Lemma}[subsection]
+
+\title{Slice Knots}
+\author{Nishit Pandya}
+\date{}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{Introduction}
+Unless otherwise stated, all homologies are with coefficients  in $\mathbb{Z}$ and all manifolds and maps are smooth.
+
+\section{Knots and some basic invariants}
+\begin{defn}[Knot]
+\label{defKnot}
+A knot is a smooth embedding $K : S^{1} \xhookrightarrow{} S^{3}$.
+\end{defn}
+
+\subsection{Seifert Surfaces}
+\begin{defn}[Seifert Surface]
+\label{defSeifertSurface}
+A Seifert Surface $F$ for a knot $K$ is a compact connected oriented embedded surface $F \subseteq S^3$ whose oriented boundary is the knot $K$.
+\end{defn}
+
+\begin{theorem}
+\label{thmSeifSurfExist}
+Given an oriented knot $K$, there exists a Seifert surface $F$ for the knot. One can explicitly construct such a surface using Seifert's algorithm.
+\end{theorem}
+The above theorem guarantees existence of a Seifert surface. However, a Seifert surface need not necessarily be unique. There is however a nice relationship between two Seifert surfaces as given by the following theorem.
+
+\begin{theorem}[S-equivalence]
+\label{thmS-equivalence}
+Given a knot $K$ and two Seifert surfaces for it, $F_{1}$ and $F_{2}$, possibly of different genera, then $F_{1}$ can be obtained from $F_{2}$ by combinations of $0$-surgery, $1$-surgery and ambient isotopy.
+\end{theorem}
+
+\begin{proof}
+Let $\alpha:S^{1}\times[0,1] \to S^{3}$ be an isotopy between the two copies of $K$. Hence, we get an annulus $\alpha^\prime:S^{1}\times[0,1]\to S^{3}\times[0,1]$ and a resulting surface $M = F_{1}\times0 \cup \alpha^\prime(S^{1}\times[0,1]) \cup F_{2}\times1$. $M$ is a compact surface and boundary of $M$ is $\emptyset$. Therefore, $M$ is a closed surface. By the classification of closed surfaces, $M$ bounds a 3-manifold $W$.
+\end{proof}
+
+\subsection{Infinite cyclic covers}
+Given a Seifert surface $F$ for a knot $K$, we can construct an infinite cyclic cover of $S^{3}\setminus F$ as follows. For $X = \overline{S^{3}\setminus N(K)}$, that is, the closure of a regular neighbourhood of K inside $S^{3}$, $F\cap X$ is diffeomorphic to $F$ and $F$ has a regular neighbourhood inside $X$, that is $F \times [-1,1]$. Now, let $Y = \overline{X \setminus F}$ where the closure is taken by adding two copies of $F$, that is, $F^{+}$ and $F^{-}$ at the end points of $F\times(0,1]$ and $F\times [-1,0)$ respectively.\\
+Now we can construct an infinite cyclic cover of $S^{3}\setminus F$ by taking countably infinite copies $\{Y_{i}, i\in \mathbb{Z}\}$, and forming the quotient space as follows $X_{\infty} = \frac{\coprod_{i}Y_{i}}{\sim}$ where $\sim$ is the identification, $F_{i}^{-} \sim F_{i+1}^{+}$.\\
+$X_{\infty}$ forms a covering space for $X=S^{3}\setminus N(K)$.\\
+$\mathbb{Z}$ (as an additive group) acts on $X_{\infty}$ as follows. For $x_{i} \in Y_{i}, 1 + x = x_{i+1} \in Y_{i+1}$, that is, shift once to the right. Therefore, $\mathbb{Z}$ also acts as a group on $H_{1}(X_{\infty})$ by the automorphism induced by the corresponding homeomorphism on $X_{\infty}$. Since $H_{1}(X_{\infty})$ is an abelian group, therefore the ring $\mathbb{Z}[\mathbb{Z}]$ acts on $H_{1}(X_{\infty})$ thus making $H_{1}(X_{\infty})$ a $\mathbb{Z}[\mathbb{Z}]$ module.\\
+First, we need to prove that $H_{1}(X_{\infty})$ is independent of the choice of Seifert surface $F$.
+\begin{theorem}
+The covering space $p:X_{\infty} \to X$ and the action of $\mathbb{Z}$ on $X_{\infty}$ is independent of the choice of $F$.
+\end{theorem}
+\begin{proof}
+A loop $\alpha$ in $X$ lifts to a loop $\alpha^{\prime}$ in $X_{\infty}$ if and only if its intersection number with $F$ is zero which is true if and only if its linking number with $K$ is zero. Since linking number with $K$ is independent of F, we are done.\\
+For a path $\gamma$ from $a$ to $1+a$, $p\gamma$ is a loop in $X$ with linking number $1$ with $K$. Conversely, for any loop in $X$ with linking number $1$ with $K$, the lift in $X_{\infty}$ is a path from $a$ to $1+a$. For any other space $p^{\prime}:X_{\infty}^{\prime}\to X$ with a covering homeomorphism $h:X_{\infty}\to X_{\infty}^{\prime}$, we have $p^{\prime}h\gamma=p\gamma$. Therefore, $h\gamma$ is the lift of $p\gamma$ in $X_{\infty}^{\prime}$ which is a path from $a$ to $1+h(a)$ in $X_{\infty}^{\prime}$. Therefore, $1+h(a)=h(1+a)$. Therefore, action of $\mathbb{Z}$ commutes with the covering transformations.
+\end{proof}
+
+\subsection{Linking Numbers and Seifert Pairings}
+
+\begin{defn}[Linking Number]
+\label{defLinkNumber}
+Given two simple closed non-intersecting curves $l_{1}, l_{2}$ in $S^{3}$, pick Seifert surfaces $F_{1},F_{2} \subseteq S^{3}$ bounding $l_{1}, l_{2}$ respectively. Push the interior of the Seifert surface into $D^{4}$. After a small perturbation, they intersect transversely. The linking number is defined as $$\mathrm{lk}(l_{1},l_{2})=F_{1} \cdot F_{2}$$, where $F_{1} \cdot F_{2}$ is the intersection number of the surfaces.
+\end{defn}
+
+Using the linking number definition as above, we can define the Seifert pairing for a Seifert surface $F$ of genus $g$ for a knot $K$. For such a surface, $H_{1}(F)$ is of rank $2g$. Therefore, it has a basis of representative, say $\alpha_{1}, \alpha_{2},\cdots\alpha_{2g}$. In general, these curves may intersect with one another in multiple points. Since F is oriented, we can push off the curves on $F$ in the positive normal direction into $S^{3}\setminus F$ by a small amount, to get curves $\alpha_{1}^{+},\alpha_{2}^{+},\cdots\alpha_{2g}^{+}$
+\begin{defn}
+\label{Seifertpairing}
+Using the above notation, the Seifert pairing is a map $ S_F: H_{1}(F,\mathbb{Z}) \times H_{1}(F) \to \mathbb{Z}$ defined on the basis above by $$S_F(\alpha_{i},\alpha_{j})=\mathrm{lk}(\alpha_{i}^{+},\alpha_{j})$$ and extended bilinearly.
+\end{defn}
+
+\begin{theorem}
+\label{SeifPairUniq}
+The pairing defined above is the unique non-singular bilinear form $\Gamma:H_{1}(S^{3}\setminus F,\mathbb{Z})\times H_{1}(F,\mathbb{Z})\to \mathbb{Z}$ such that $\beta([c],[d])=\mathrm{lk}(c,d)$ for any oriented simple closed curves $c$ and $d$ in $S^{3}\setminus F$ and $F$ respectively.
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+
+After choosing a basis, the Seifert pairing can be written as a $2g \times 2g$ integer-valued matrix (say $A$). This matrix is not itself an invariant of the knot as it depends on the choice of the Seifert surface. However, we know from \ref{thmS-equivalence} how two Seifert surfaces are related. $1$-surgery increases the genus of the surface by $1$. Therefore, the Seifert matrix undergoes the following transformation. The tube added will contribute two homology generators, the meridian, say $\mu$ and the longitude, say, $\lambda$. The meridian does not link with any generator other than the longitude. Therefore the matrix transforms as below
+$$A \xrightarrow{1-\mathrm{surgery}} \left(\begin{array}{ccc|cc}
+{} & {} & {} & {0} & {\vdots} \\
+{} & {A} & {} & {0} & {\vdots} \\
+{} & {} & {} & {0} & {\vdots} \\
+\hline {0} & {0} & {0} & {0} & {0} \\
+{\cdots} & {\cdots} & {\cdots} & {1} & {*}
+\end{array}\right)$$
+Since $0$-surgery removes the tube, thus reducing the genus by $1$, its effect will be the reverse transformation of the matrix.\\
+
+We can also define another bilinear form on $H_{1}(F)$, that is the intersection form $i$, defined on the basis by counting the oriented intersections. $i$ is anti-symmetric, that is, $i(x,y)=-i(y,x)$. We also have the following relationship.
+$$i(x,y) = \mathrm{lk}(x,y)-\mathrm{lk}(y,x)$$.\\
+Written as matrices, we get $I = A - A^{T}$ where $I$ is the matrix of the intersection form. $I$ is thus a skew-symmetric matrix. We also have a basis for $H_{1}(F)$ consisting of cycles $r_{1},r_{2},\cdots r_{2g}$ where $r_{1},\cdots r_{g}$ are the meridians and $r_{g+1}, \cdots r_{2g}$ are the longitudes of the tori whose connected sum (minus a disk) gives us $F$. With respect to this basis, the intersection form becomes $$I = \begin{pmatrix}{\textbf{0}_{g\times g} & \textrm{Id}_{g \times g}\\
+\textrm{-Id}_{g \times g} & \textbf{0}_{g\times g}}
+\end{pmatrix}$$
+Therefore, $\mathrm{det}(I) = \pm 1$ (depending on the genus of $F$).
+Therefore, we get, for a Seifert matrix $A$, $$\mathrm{det}(A-A^{T}) = \pm 1$$
+
+\subsection{Alexander Polynomial}
+Here on, all modules are over commutative rings with unity.
+\begin{defn}[Finite Presentation of a module]
+A finite presentation for a module $M$ over a ring $R$ is an exact sequence $$F\xrightarrow{\alpha}E\xrightarrow{\phi}M\xrightarrow{}0$$ where $E,F$ are free $R$-modules with finite bases.
+\end{defn}
+\begin{defn}[Presentation matrix]
+In the above notation, say with $\mathrm{rank}(F)=n$ and $\mathrm{rank}(E)=m$, the $m\times n$ matrix for $\alpha$ (in any basis for $F$ and $E$) is called a presentation matrix for $M$. 
+\end{defn}
+The main theorem is as follows.
+\begin{theorem}
+\label{Alexander_Module}
+For a knot $K$ with a Seifert surface $F$ and associated infinite cyclic cover $X_{\infty}$, the $\mathbb{Z}[\langle t \rangle]$ module (note that $\mathbb{Z} =\langle t \rangle$) $H_{1}(X_{\infty},\mathbb{Z})$ is presented by the matrix $tA-A^{T}$ where $A$ is the Seifert form matrix for the Seifert surface $F$.
+\end{theorem}
+\begin{proof}
+Let $X_{\infty}=Y^{\prime} \cup Y^{\prime\prime}$ where $ Y^{\prime}= \bigcup\limits_{i}Y_{2i+1}$ and $Y^{\prime\prime} = \bigcup\limits_{i}Y_{2i}$. Note that $Y^{\prime}\cap Y^{\prime\prime}$ is a countable collection of copies of $F$.\\
+Consider the following sequence (over $\mathbb{Z}$):- 
+$$0\xrightarrow{}C_{n}(Y^{\prime}\cap Y^{\prime\prime})\xrightarrow{\alpha_{n}}C_{n}(Y^{\prime})\oplus C_{n}(Y^{\prime\prime})\xrightarrow{\beta_{n}}C_{n}(X_{\infty})\xrightarrow{}0$$ where $\alpha_{n}(x)=(-x,x) \in C_{n}(Y_{i-1})\oplus C_n(Y_{i})$ for $x \in C_{n}(Y_{i-1}\cap Y_{i})$ and $\beta_{n}(a,b)=a+b$.
+Note that all terms in the above sequence are also $\mathbb{Z}(\langle t\rangle)$ modules.\\
+With these definitions, $\alpha_{n}$ is injective, $\beta_{n}$ is surjective and $\beta_{n}\alpha_{n}=0$.
+Therefore, the above sequence is short exact. Thus it leads to a long exact sequence of homology modules (over $\mathbb{Z})$
+$$\xrightarrow{} H_{1}(Y^{\prime}\cap Y^{\prime\prime}) \xrightarrow{\alpha_{*}} H_{1}(Y^{\prime})\oplus H_{1}(Y^{\prime\prime})\xrightarrow{\beta_{*}}H_{1}(X_{\infty})\xrightarrow{}H_{0}(Y^{\prime}\cap Y^{\prime\prime}) \xrightarrow{\alpha_{*}} H_{0}(Y^{\prime})\oplus H_{0}(Y^{\prime\prime})$$
+$F$ is connected. therefore $H_{0}(F) = \mathbb{Z}$. Therefore, we can identify $H_{0}(Y^{\prime}\cap Y^{\prime\prime})$ with $\mathbb{Z}[\langle t \rangle]\otimes_{\mathbb{Z}}H_{0}(F)$ as $\mathbb{Z}[\langle t \rangle]$ modules with generator of $H_{0}(Y_{0}$ corresponding to $1\otimes 1$. Similarly, $H_{0}(Y^{\prime})\oplus H_{0}(Y^{\prime\prime})$ can be identified with $\mathbb{Z}[\langle t \rangle]\otimes_{\mathbb{Z}}H_{0}(Y)$ with generator of $H_{0}(Y_{0})$ identified with $1\otimes 1$.\\
+By definition of $\alpha$, we have $\alpha_{*}(1\otimes 1) = -(1\otimes 1) + (t\otimes1)$, therefore, $\alpha_{*}$ is injective, therefore by exactness, $\beta_{*}$ is surjective.\\
+Similarly, $H_{1}(Y^{\prime}\cap Y^{\prime\prime} \cong \mathbb{Z}[\langle t \rangle]\otimes_{\mathbb{Z}}H_{1}(F)$ and $H_{1}(Y^{\prime})\oplus H_{1}(Y^{\prime\prime} \cong \mathbb{Z}[\langle t \rangle]\otimes_{\mathbb{Z}}H_{1}(Y)$.\\
+Pick a basis for $H_{1}(F)$, say $\{[f_{i}]\}$ and a "dual basis" for $H_{1}(Y^{\prime})\oplus H_{1}(Y^{\prime\prime})$, that is $\{[e_{j}]\}$. (see \ref{SeifPairUniq})\\
+Then by definition of $\alpha_{*}$, we have $$
+\alpha_{*}(1 \otimes[f_{i}])=\sum_{j}(-A_{ij}(1 \otimes[e_{j}])+A_{ji}(t \otimes[e_{j}])$$.\\
+Since $\beta_{*}$ is surjective, therefore, we have that the matrix $tA-A^{T}$ presents the $\mathbb{Z}[\langle t \rangle]$ module $H_{1}(X_{\infty})$.
+\end{proof}
+\begin{defn}[Elementary Ideals]
+\label{Elementary_Ideal}
+For a  module $M$ over $R$ with an $m \times n$ presentation matrix $A$ its $r$-th elementary ideal is the ideal of $R$ generated by all the $(m-r+1)\times (m-r+1)$ minors of A.\\
+\end{defn}
+With this definition, we have that the $1$-st elementary ideal of $H_{1}(X_{\infty})$ is generated by the $2g\times2g$ minors of $tA-A^{T}$. Since $A$ is a $2g\times2g$ matrix, therefore, the ideal is generated by $\mathrm{det}(tA-A^{T})$.
+\begin{defn}
+The polynomial $p(t) = \mathrm{det}(tA-A^{T})$ is called the Alexander polynomial of the knot $K$.
+\end{defn}
+Note that $p$, being a generator of an ideal is well defined only upto units in $\mathbb{Z}[\langle t \rangle]$, therefore, $p$ is well defined only upto $\pm t^{n}$. That this is independent of choice of Seifert surface can be seen by computing the determinants of the matrix transformations above.
+
+\section{Topology of Surfaces}
+We assume the following theorem throughout
+\begin{theorem}[Classification of Closed surfaces]
+\label{Class_Of_Surf}
+Every closed (compact without boundary) oriented surface (2-manifold) is homeomorphic to a sphere with $g$ handles attached. ($g \geq 0$).
+\end{theorem}
+
+\subsection{Symplectic form on a surface}
+For a surface $F$ of genus $g$, we have a basis of size $2g$ for $H_{1}(F)$, say, $\alpha_{1}, \alpha_{2},\cdots\alpha_{2g}$. Since $F$ is compact without boundary, therefore, by Poincar\'e duality, we have $H^{1}(F) \cong H_{1}(F)$ as groups\\
+Therefore, let the dual basis for $H^{1}(F)$ be $\alpha_{1}^{*},\alpha_{2}^{*},\cdots\alpha_{2g}^{*}$\\
+Note that we can choose the basis elements to be the longitude circles and meridian circles on $F$. These circles are one-dimensional manifolds and can be perturbed slightly so that they intersect transversely.\\
+We can thus create a map, $\hat{i}:H^{1}(F)\times H^{1}(F) \to \mathbb{Z}$ by setting $\hat{i}(\alpha_{i}^{*},\alpha_{j}^{*})=(\alpha_{i}^{*}\smile\alpha_{j}^{*})([F])$. By Poincar\'e duality, $\alpha_{i}^{*}\smile\alpha_{j}^{*} = (\alpha_{i}\cap\alpha_{j})^{*}$, which is the oriented intersection number of $\alpha_{i}$ and $\alpha_{j}$. This $2$-form can be written in the matrix form (with the above basis) as $$\hat{i}= \begin{pmatrix}{\textbf{0}_{g\times g} & \textrm{Id}_{g \times g}\\
+\textrm{-Id}_{g \times g} & \textbf{0}_{g\times g}}
+\end{pmatrix}$$
+
+\end{document}
